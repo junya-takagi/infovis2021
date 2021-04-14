@@ -101,7 +101,9 @@ function abs(va,vb)
 function AreaOfTriangle(v0,v1,v2)
 {
     var a = abs(v0,v1)*abs(v0,v2)
+    document.write("a:",a)
     var b = dot(v0,v1,v2)
+    document.write("b:",b)
     var S0 = 0.5*Math.sqrt(a**2-b**2)
     return S0
 }
