@@ -75,3 +75,40 @@ Vec3.prototype.mid = function()
     }
     return mid;
 }
+
+
+Vec3.prototype.dot = function(v0,v1,v2)
+{
+    var x1 = v1.x-v0.x
+    var x2 = v2.x-v0.x
+    var y1 = v1.y-v0.y
+    var y2 = v2.y-v0.y
+    var z1 = v1.z-v0.z
+    var z2 = v2.z-v0.z
+    var dot = x1*y1+x2*y2+z1*z2
+    return dot
+}
+
+Vec3.prototype.abs1 = function(v0,v1)
+{
+    var x1 = v1.x-v0.x
+    var y1 = v1.y-v0.y
+    var z1 = v1.z-v0.z
+    var abs1 = Math.sqrt(x1**2+y1**2+z1**2)
+    return abs1
+}
+
+Vec3.prototype.abs2 = function(v0,v2)
+{
+    var x2 = v2.x-v0.x
+    var y2 = v2.y-v0.y
+    var z2 = v2.z-v0.z
+    var abs2 = Math.sqrt(x2**2+y2**2+z2**2)
+    return abs2
+}
+
+Vec3.prototype.AreaOfTriangle = function(abs1,abs2,dot)
+{
+    var S = 0.5*Math.sqrt((abs1*abs2)**2-dot**2)
+    return S
+}
