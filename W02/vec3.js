@@ -111,6 +111,6 @@ Vec3.prototype.AreaOfTriangle = function(v0,v1,v2)
 {
     var a = abs1(v0,v1)*abs2(v0,v2)
     var b = dot(v0,v1,v2)
-    var S = 0.5*Math.sqrt(a**2-b**2)
-    return S
+    var S0 = 0.5*Math.sqrt(a**2-b**2)
+    return S0
 }
