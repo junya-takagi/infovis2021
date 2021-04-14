@@ -85,7 +85,7 @@ function dot(v0,v1,v2)
     var y2 = v2.y-v0.y
     var z1 = v1.z-v0.z
     var z2 = v2.z-v0.z
-    var dot = x1*y1+x2*y2+z1*z2
+    var dot = x1*x2+y1*y2+z1*z2
     return dot
 }
 
