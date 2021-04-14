@@ -9,11 +9,11 @@ Vec3 = function(x,y,z)
 Vec3.prototype.min = function()
 {
     var min = this.x;
-    if(min<=this.y)
+    if(min>=this.y)
     {   
         min = this.y;
     }
-    if(min<=this.z)
+    if(min>=this.z)
     {    
         min = this.z;
     } 
@@ -23,11 +23,11 @@ Vec3.prototype.min = function()
 Vec3.prototype.max = function()
 {
     var max = this.x;
-    if(max>=this.y)
+    if(max<=this.y)
     {
         max = this.y
     }
-    if(max>=this.z)
+    if(max<=this.z)
     {
         max = this.z
     } 
@@ -73,5 +73,5 @@ Vec3.prototype.mid = function()
             }
         }
     }
-    
+    return mid;
 }
