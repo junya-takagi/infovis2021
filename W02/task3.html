@@ -15,8 +15,8 @@
         <input type="number" id="y2">
         <input type="number" id="z2">
         <br>
-        <input type="button" value="計算" onclick="culc()">
         <script src="vec3.js"></script>
+        <input type="button" value="計算" onclick="culc()">
         <script>
                function culc(){
                      const x0 = document.getElecmentById("x0");
@@ -31,12 +31,9 @@
                      const y2 = document.getElecmentById("y2");
                      const z2 = document.getElecmentById("z2");
 
-                     document.write("v0 = ",x0," ",y0," ",z0);
-                     document.write(<BR>)
-                     document.write("v1 = ",x1," ",y1," ",z1);
-                     document.write(<BR>)
-                     document.write("v2 = ",x2," ",y2," ",z2);
-                     document.write(<BR>)
+                     document.write("v0 = ",x0," ",y0," ",z0,"\n");
+                     document.write("v1 = ",x1," ",y1," ",z1,"\n");
+                     document.write("v2 = ",x2," ",y2," ",z2,"\n");
 
                      var v0  = new Vec3(x0,y0,z0);  
                      var v1  = new Vec3(x1,y1,z1);
