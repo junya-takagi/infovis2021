@@ -15,30 +15,36 @@
         <input type="number" id="y2">
         <input type="number" id="z2">
         
+        <input type="button" value="計算" onclick="culc()"
         <script src="vec3.js"></script>
         <script>
-               const x0 = document.getElecmentById("x0");
-               const y0 = document.getElecmentById("y0");
-               const z0 = document.getElecmentById("z0");
-               
-               const x1 = document.getElecmentById("x1");
-               const y1 = document.getElecmentById("y1");
-               const z1 = document.getElecmentById("z1");
-               
-               const x2 = document.getElecmentById("x2");
-               const y2 = document.getElecmentById("y2");
-               const z2 = document.getElecmentById("z2");
-              
-               document.write("v0 = ",x0," ",y0," ",z0,"\n");
-               document.write("v1 = ",x1," ",y1," ",z1,"\n");
-               document.write("v2 = ",x2," ",y2," ",z2,"\n");
-               
-               var v0  = new Vec3(x0,y0,z0);  
-               var v1  = new Vec3(x1,y1,z1);
-               var v2  = new Vec3(x2,y2,z2);
-               var S   = AreaOfTriangle(v0,v1,v2);
+               function culc(){
+                     const x0 = document.getElecmentById("x0");
+                     const y0 = document.getElecmentById("y0");
+                     const z0 = document.getElecmentById("z0");
 
-               document.write("Area = ",S);
+                     const x1 = document.getElecmentById("x1");
+                     const y1 = document.getElecmentById("y1");
+                     const z1 = document.getElecmentById("z1");
+
+                     const x2 = document.getElecmentById("x2");
+                     const y2 = document.getElecmentById("y2");
+                     const z2 = document.getElecmentById("z2");
+
+                     document.write("v0 = ",x0," ",y0," ",z0);
+                     document.write(<BR>)
+                     document.write("v1 = ",x1," ",y1," ",z1);
+                     document.write(<BR>)
+                     document.write("v2 = ",x2," ",y2," ",z2);
+                     document.write(<BR>)
+
+                     var v0  = new Vec3(x0,y0,z0);  
+                     var v1  = new Vec3(x1,y1,z1);
+                     var v2  = new Vec3(x2,y2,z2);
+                     var S   = AreaOfTriangle(v0,v1,v2);
+
+                     document.write("Area = ",S);
+               }
         </script>
        </body>
 </html>
