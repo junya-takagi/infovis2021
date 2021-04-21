@@ -1,0 +1,50 @@
+<html>
+      <head>
+        <title>W02:task3</title>
+      </head>
+      <body>
+        <input type="number" id="x0">
+        <input type="number" id="y0">
+        <input type="number" id="z0">
+        <br>
+        <input type="number" id="x1">
+        <input type="number" id="y1">
+        <input type="number" id="z1">
+        <br>
+        <input type="number" id="x2">
+        <input type="number" id="y2">
+        <input type="number" id="z2">
+        <br>
+        <script src="vec3.js"></script>
+        <input type="button" value="計算" onclick="culc()">
+        <script>
+               function culc(){
+                     const x0 = document.getElementById("x0").value;
+                     const y0 = document.getElementById("y0").value;
+                     const z0 = document.getElementById("z0").value;
+
+                     const x1 = document.getElementById("x1").value;
+                     const y1 = document.getElementById("y1").value;
+                     const z1 = document.getElementById("z1").value;
+
+                     const x2 = document.getElementById("x2").value;
+                     const y2 = document.getElementById("y2").value;
+                     const z2 = document.getElementById("z2").value;
+
+                     document.write("v0 = (",x0,",",y0,",",z0,")\n");
+                     document.write('<br>\n')
+                     document.write("v1 = (",x1,",",y1,",",z1,")\n");
+                     document.write('<br>\n')
+                     document.write("v2 = (",x2,",",y2,",",z2,")\n");
+                     document.write('<br>\n')
+
+                     var v0  = new Vec3(x0,y0,z0);  
+                     var v1  = new Vec3(x1,y1,z1);
+                     var v2  = new Vec3(x2,y2,z2);
+                     var S   = AreaOfTriangle(v0,v1,v2);
+
+                     document.write("Area = ",S);
+               }
+        </script>
+       </body>
+</html>
