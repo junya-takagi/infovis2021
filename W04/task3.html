@@ -11,7 +11,8 @@
 
             d3.csv("https://junya-takagi.github.io/infovis2021/W04/data_task2.csv",draw)
             function draw(data){
-                d3.selectAll("rect")
+                d3.select("body")
+                  .selectAll("rect")
                   .data(data)
                   .enter()
                   .append("rect")
