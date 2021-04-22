@@ -42,7 +42,9 @@
                    .attr("y", function(d,i){
                       return padding+i*(height+padding)
                    })
-                   .attr("width",width)
+                   .attr("width",function(d){
+                       return d.width
+                   })
                    .attr("height",height)
                    .attr("fill",function(d,i){
                       return d.color
