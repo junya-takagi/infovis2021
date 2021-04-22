@@ -8,13 +8,31 @@
             var padding = 10
             var height = 20
             var svg = d3.select("body").append("svg")
+            svg.attr("id","chart")
+               .attr("width")
+
+            var y = d3.scaleBand()
+                      .domain(data.map(function(d){
+                          return d.label
+                      }))
+                      .range([0,width])
+                      .padding(0.1)
+            
             d3.csv("https://junya-takagi.github.io/infovis2021/W04/data_task2.csv",draw)
             function draw(data){
-                svg.selectAll("rect")
+                var yAxis = d3.axisLeft(y)
+                chart.append("g")
+                     .attr("class","y axis")
+                     .call(yAxis)
+
+                chart.selectAll(".bar")
                    .data(data)
                    .enter()
                    .append("rect")
-                   .attr("x",padding)
+                   .attr("class","bar")
+                   .attr("x",function(d){
+                       return y(d.label)
+                   })
                    .attr("y",function(d,i){
                        return padding+i*(height+padding)
                    })
