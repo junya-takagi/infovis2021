@@ -7,7 +7,7 @@
         <script src="https://d3js.org/d3.v4.min.js"></script>
         <script>
             var margin =
-            {top:20,right:30,bottom:30,left:100}
+            {top:20,right:30,bottom:30,left:10}
             var svgwidth = 460-margin.left-margin.right
             var svgheight = 400-margin.top-margin.bottom
             var height = 20
@@ -38,7 +38,7 @@
                    .data(data)
                    .enter()
                    .append("rect")
-                   .attr("x",50)
+                   .attr("x",70)
                    .attr("y", function(d,i){
                       return padding+i*(height+padding)
                    })
