@@ -4,12 +4,18 @@
     </head>
     <body>
         <p>Hello D3! A</p>
-        <p>Hello D3! B</p>
-        <p>Hello D3! C</p>
+        <p id="p2">Hello D3! B</p>
+        <p class="p3">Hello D3! C</p>
         <script src="https://d3js.org/d3.v4.min.js"></script>
         <script>
-            var p = d3.select("body").selectAll("p")
+            var p = d3.select("body").select("p")
             p.style("font-weight","bold")
+            
+            p = d3.select("body").select("#p2")
+            p.style("font-size","20px")
+
+            p = d3.select("body").select(".p3")
+            p.style("color","red")
         </script>
     </body>
 </html>
