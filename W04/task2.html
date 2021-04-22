@@ -17,7 +17,7 @@
             var yScale = d3.scaleBand()
                            .rangeRound([padding,width-padding])
                            .padding(0.1)
-                           .domain(map(function(d,i){
+                           .domain((function(d,i){
                                return d.label
                            }))
             
