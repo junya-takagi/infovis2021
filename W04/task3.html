@@ -14,15 +14,6 @@
                         .attr("width", width)
                         .attr("height", height)
             
-            var yScale = d3.scaleBand()
-                           .rangeRound([padding,width-padding])
-                           .padding(0.1)
-                           .domain((function(d,i){
-                               return d.label
-                           }))
-            
-            svg.append("g").call(d3.axisLeft(yScale));
-
             svg.append("g")
                 .selectAll("rect")
                 .data(dataset)
@@ -36,7 +27,11 @@
                 .attr("height",height)
                 .attr("fill",function(d,i){
                     return d.color
-                });
+                })
+                .document.text(function(d,i){
+                    return d.label
+                })
+                ;
             </script>
     </body>
 </html>
