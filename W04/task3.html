@@ -23,7 +23,7 @@
             d3.csv("https://junya-takagi.github.io/infovis2021/W04/data_task2.csv",draw)
             function draw(data){
                 var y = d3.scaleBand()
-                          .range([0,height])
+                          .range([0,svgheight])
                           .domain(data.map(function(d){
                               return d.label
                           }))
