@@ -8,15 +8,15 @@
         <script>
             var margin =
             {top:20,right:30,bottom:30,left:100}
-            var width = 460-margin.left-margin.right
-            var height = 400-margin.top-margin.bottom
-            var size = 20
+            var svgwidth = 460-margin.left-margin.right
+            var svgheight = 400-margin.top-margin.bottom
+            var height = 20
             var padding = 10
 
             var svg = d3.select("#chart")
                         .append("svg")
-                        .attr("width",width+margin.left+margin.right)
-                        .attr("height",height+margin.top+margin.bottom)
+                        .attr("width",svgwidth+margin.left+margin.right)
+                        .attr("height",svgheight+margin.top+margin.bottom)
                         .append("g")
                         .attr("transform","translate("+margin.left+","+margin.top+")")
 
@@ -37,10 +37,10 @@
                    .append("rect")
                    .attr("x",padding)
                    .attr("y", function(d,i){
-                      return padding+i*(size+padding)
+                      return padding+i*(height+padding)
                    })
                    .attr("width",width)
-                   .attr("height",size)
+                   .attr("height",height)
                    .attr("fill",function(d,i){
                       return d.color
                    })
