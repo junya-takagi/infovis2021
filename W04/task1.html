@@ -7,7 +7,7 @@
         <script src="https://d3js.org/d3.v4.min.js"></script>
         <script>
             var svg = d3.select("body").append("svg")
-            d3.csv("https://junya-takagi.github.io/infovis2021/W04/data.csv",
+            d3.csv("https://junya-takagi.github.io/infovis2021/W04/data_task1.csv",
                 function(data){
                     svg.selectAll("circle")
                        .data(data)
@@ -16,6 +16,7 @@
                        .attr("cx",function(d){return d.x})
                        .attr("cy",function(d){return d.y})
                        .attr("r", function(d){return d.r})
+                       .style("fill",function(d){return d.color})
                 })
         </script>
     </body>
