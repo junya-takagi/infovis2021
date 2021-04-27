@@ -29,7 +29,7 @@
                    })
                    .text(d=>d.label)
                 
-                svg.selectAll("rest").data(data).eneter().append("rect")
+                svg.selectAll("rest").data(data).enter().append("rect")
                    .attr("x",bar_offset)
                    .attr("y",(d,i)=>padding+i*(bar_height+padding))
                    .attr("width",d=>d.value*bar_scale)
