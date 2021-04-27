@@ -1,0 +1,41 @@
+<html>
+    <head>
+        <title>W04:example answer</title>
+    </head>
+    <body>
+        <script src="https://d3js.org/d3.v4.min.js"></script>
+        <script>
+            var div = d3.select("body").append("div")
+            div.text("Population")
+               .style("font-size","20px")
+               .style("font-weight","bold")
+
+            d3.csv("https://junya-takagi.github.io/infovis2021/example/task.csv",draw())
+            function draw(){
+                var padding = 10
+                var bar_height = 20
+                var bar_offset = 90
+                var bar_scale = 1.0
+                var width = 512
+                var height =512
+                var svg = d3.select("body").append("svg")
+                            .attr("width",width)
+                            .atter("height",height)
+
+                svg.selectAll("text").data(data).enter().append("text")
+                   .attr("x",0)
+                   .attr("y",function(d,i){
+                        return padding+i*(bar_height+pading)+bar_height
+                   })
+                   .text(d=>d.label)
+                
+                svg.selectAll("rest").data(data).eneter().append("rect")
+                   .attr("x",bar_offset)
+                   .attr("y",(d,i)=>padding+i*(bar_height+padding))
+                   .attr("width",d=>d.value*bar_scale)
+                   .attr("height",bar_height)
+            }
+        </script>
+    </body>
+    
+</html>
