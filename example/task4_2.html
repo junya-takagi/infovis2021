@@ -25,7 +25,7 @@
                 svg.selectAll("text").data(data).enter().append("text")
                    .attr("x",0)
                    .attr("y",function(d,i){
-                        return padding+i*(bar_height+pading)+bar_height
+                        return padding+i*(bar_height+padding)+bar_height
                    })
                    .text(d=>d.label)
                 
