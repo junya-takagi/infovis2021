@@ -10,8 +10,8 @@
                .style("font-size","20px")
                .style("font-weight","bold")
 
-            d3.csv("https://junya-takagi.github.io/infovis2021/example/task.csv",draw())
-            function draw(){
+            d3.csv("https://junya-takagi.github.io/infovis2021/example/task.csv",draw)
+            function draw(data){
                 var padding = 10
                 var bar_height = 20
                 var bar_offset = 90
