@@ -5,3 +5,13 @@ d3.csv("https://junya-takagi.github.io/infovis2021/W06/data.csv")
     .catch(error=>{
         console.log(error);
     });
+function ShowScatterPlot(data){
+    var svg = d3.select("body").append("svg")
+    svg.selectAll("circle")
+       .data(data)
+       .enter()
+       .append("circle")
+       .attr("cx",d=>d.x)
+       .attr("cy",d=>d.y)
+       .attr("r",d=>d.r)
+}
