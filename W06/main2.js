@@ -20,7 +20,7 @@ function ShowScatterPlot(data){
 
     var yscale = d3.scaleLinear()
         .domain([d3.min(data,d=>d.y),d3.max(data,d=>d.y)])
-        .range([0,height-top-bottom])
+        .range([0,height-margin.top-margin.bottom])
 
     var xaxis=d3.axisBottom(xscale)
                 .ticks(6)
@@ -31,7 +31,7 @@ function ShowScatterPlot(data){
         .append("g")
         .attr("transform","translate(${margin.left},${margin.top}")
         .call(xaxis)
-        
+
     svg.selectAll("circle")
        .data(data)
        .enter()
