@@ -12,6 +12,7 @@ var yscale = d3.scaleLinear().domain([d3.min(data,d=>d.y),d3.max(data,d=>d.y)]).
 
 d3.csv("https://junya-takagi.github.io/infovis2021/W06/data.csv")
     .then(data =>{
+        data.forEach(d=>{d.x=+d.x;d.y=+d.y})
         ShowScatterPlot(data);
     })
     .catch(error=>{
