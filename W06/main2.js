@@ -10,16 +10,6 @@ d3.csv("https://junya-takagi.github.io/infovis2021/W06/data.csv")
     .catch(error=>{
         console.log(error);
     });
-function ShowScatterPlot(data){
-    var svg = d3.select("body").append("svg").attr("width",width).attr("height",height)
-    svg.selectAll("circle")
-       .data(data)
-       .enter()
-       .append("circle")
-       .attr("cx",d=>xscale(d.x))
-       .attr("cy",d=>yscale(d.y))
-       .attr("r",d=>d.r)
-}
 
 var xscale = d3.scaleLinear()
     .domain([d3.min(data,d=>d.x),d3.max(data,d=>d.x)])
@@ -38,5 +28,17 @@ var svg = d3.select("body").append("svg")
     .append("g")
     .attr("transform","translate(${margin.left},${margin.top}")
     .call(xaxis)
+function ShowScatterPlot(data){
+    var svg = d3.select("body").append("svg").attr("width",width).attr("height",height)
+    svg.selectAll("circle")
+       .data(data)
+       .enter()
+       .append("circle")
+       .attr("cx",d=>xscale(d.x))
+       .attr("cy",d=>yscale(d.y))
+       .attr("r",d=>d.r)
+}
+
+
 
 
