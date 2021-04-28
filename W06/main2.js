@@ -15,8 +15,8 @@ d3.csv("https://junya-takagi.github.io/infovis2021/W06/data.csv")
 function ShowScatterPlot(data){
     var svg = d3.select("body").append("svg").attr("width",width).attr("height",height)
     var xscale = d3.scaleLinear()
-    .domain([d3.min(data,d=>d.x),d3.max(data,d=>d.x)])
-    .range([0,width-margin.left-margin.right])
+        .domain([d3.min(data,d=>d.x),d3.max(data,d=>d.x)])
+        .range([0,width-margin.left-margin.right])
 
     var yscale = d3.scaleLinear()
         .domain([d3.min(data,d=>d.y),d3.max(data,d=>d.y)])
