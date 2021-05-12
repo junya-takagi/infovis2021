@@ -2,6 +2,7 @@ d3.csv("https://junya-takagi.github.io/infovis2021/W08/data3.csv")
     .then(data=>{
         data.forEach(d=>{
             d.value = Number(d.value)
+            d.color = d.color
         });
         var config = {
             parent:"#drawing_redion",
@@ -56,12 +57,11 @@ class Pie_chart{
             .value(d=>d.value)
         
         self.arc = d3.arc()
-            .innerRadius(self.config.width/8)
+            .innerRadius(20)
             .outerRadius(self.config.width/3)
-
-        self.text = d3.arc()
-        .innerRadius(self.config.width/8)
-        .outerRadius(self.config.width/3)
+        self.text= d3.arc()
+            .innerRadius(0)
+            .outerRadius(self.config.width/2.5)
 
     }
     update(){
@@ -71,23 +71,25 @@ class Pie_chart{
     render(){
         let self = this;
         
-        self.chart.selectAll("pie")
+        var piegroup = 
+        self.chart.selectAll(".pie")
             .data(self.pie(self.data))
             .enter()
-            .append("path")
-            .attr("id","srice")
+            .append("g")
+            .attr("class","pie")
+            .attr("fill",d=>d.data.color)
+
+        piegroup.append("path")
             .attr("d",self.arc)
             .attr("stroke","white")
-            .attr("stroke-width","2px")
-            .attr("fill",d=>self.data.color)
 
-        self.chart.selectAll("pie")
-            .data(self.data.label)
-            .enter()
-            .append('text')
-            .text(d => d)
-            .attr("transform",d=>`translate(${self.arc.centroid(d)})})`)
-            .style("text-anchor", "middle")
-            .style("font-size", 5);
+        piegroup.append("text")
+            .attr("fill","black")
+            .attr("transform",function(d){
+                return "translate("+self.text.centroid(d)+")";
+            })
+            .attr("font","3px")
+            .attr("text-anchor","middle")
+            .text(d=>d.data.label)
     }
 }
