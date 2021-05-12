@@ -33,11 +33,12 @@ class Line_chart{
     init(){
         let self = this;
         self.inner_width = self.config.width-self.config.margin.left-self.config.margin.right
-        self.inner_height= self.config.height-self.config.maring.top-self.config.margin.bottom
+        self.inner_height= self.config.height-self.config.margin.top-self.config.margin.bottom
+        console.log(self.inner_width,self.config.width)
 
-        self.svg = d3.select(self.config.paretnt)
-            .attr("width",self.inner_width)
-            .attr("height",self.inner_height)
+        self.svg = d3.select(self.config.parent)
+            .attr("width",self.config.width)
+            .attr("height",self.config.height)
 
         self.title = self.svg.append("text")
             .attr("x",self.inner_width*0.5)
@@ -48,43 +49,62 @@ class Line_chart{
 
         self.chart = self.svg.append("g")
             .attr("id","chart")
+            .attr("width",self.inner_width-self.config.padding.left)
+            .attr("height",self.inner_height-self.config.padding.bottom)
             .attr("transform",`translate(${self.config.margin.left},${self.config.margin.top})`)
         
         self.xscale = d3.scaleLinear()
-            .range(0,self.inner_width)
+            .range([self.config.padding.left,self.inner_width])
         self.xaxis = d3.axisBottom(self.xscale)
             .ticks(10)
         self.xaxis_group = self.chart.append("g")
             .attr("id","x-axis")
-            .attr("transform",`translate(${self.config.padding.left},${self.inner_height})`)
+            .attr("transform",`translate(0,${self.inner_height-self.config.padding.bottom})`)
 
         self.yscale = d3.scaleLinear()
-            .range(0,self.inner_height)
+            .range([self.inner_height-self.config.padding.bottom,0])
         self.yaxis = d3.axisLeft(self.yscale)
             .ticks(10)
         self.yaxis_group = self.chart.append("g")
             .attr("id","y-axis")
             .attr("transform",`translate(${self.config.padding.left},0)`)
+        self.area = d3.area()
+            .x(d=>self.xscale(d.x))
+            .y1(d=>self.yscale(d.y))
+            .y0(d=>self.yscale(0))
     }
     update(){
         let self = this;
         const xmin = d3.min(self.data,d=>d.x)
         const xmax = d3.max(self.data,d=>d.x)
-        self.xscale.domain([xmin,xmax])
+        self.xscale.domain([0,xmax])
         const ymin = d3.min(self.data,d=>d.y)
         const ymax = d3.max(self.data,d=>d.y)
-        self.xscale.domain([ymin,ymax])
+        self.yscale.domain([0,ymax])
         self.render()
     }
     render(){
         let self = this;
+                
+        self.chart.selectAll("circle")
+            .data(self.data)
+            .enter()
+            .append("circle")
+            .attr("cx",d=>self.xscale(d.x))
+            .attr("cy",d=>self.yscale(d.y))
+            .attr("r","5px")
+            .attr("fill","black")
 
         self.chart.selectAll("path")
             .data(self.data)
             .enter()
             .append("path")
-            .attr("d",d=>d3.line().x(d=>d.x).y(d=>d.y))
-            .attr("stroke","black")
-            .attr("fill","none")
+            .attr("d",self.area(self.data))
+            .attr("stroke","red")
+            .attr("fill","blue")
+        self.xaxis_group
+            .call(self.xaxis)
+        self.yaxis_group
+            .call(self.yaxis)
     }
 }
