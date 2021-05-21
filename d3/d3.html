@@ -1,0 +1,29 @@
+<html>
+    <head>
+        <link rel="stylesheet" href="style.css">
+        </style>
+        <title>page name</title>
+    </head>
+    <body>
+        <script src="http://d3js.org/d3.v6.min.js"></script>
+        <script>
+            d3.csv("data.csv",function(data){
+                console.log(data)
+            })
+            var body = d3.select("body")
+            var p    = body.append("p")
+            p.text("New paragraph")</script>
+        <h1>データビジュアライゼーション</h1>
+        <p>治せる</p>
+        <ul>
+            <li>発熱</li>
+            <li>悪寒</li>
+            <li>不快感</li>
+        </ul>
+        <ol>
+            <li>ロード</li>
+            <li>生成</li>
+            <li>発動</li>
+        </ol>
+    </body>
+</html>
