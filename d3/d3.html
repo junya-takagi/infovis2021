@@ -5,14 +5,16 @@
         <title>page name</title>
     </head>
     <body>
-        <script src="http://d3js.org/d3.v6.min.js"></script>
+        <script src="https://d3js.org/d3.v6.min.js"></script>
         <script>
-            d3.csv("data.csv",function(data){
-                console.log(data)
+            d3.csv("https://junya-takagi.github.io/infovis2021/d3/data.csv",function(data){
+                console.log(data.val)
+                console.log("junya")
             })
             var body = d3.select("body")
             var p    = body.append("p")
-            p.text("New paragraph")</script>
+            p.text("New paragraph")
+        </script>
         <h1>データビジュアライゼーション</h1>
         <p>治せる</p>
         <ul>
