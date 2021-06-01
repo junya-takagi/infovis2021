@@ -24,7 +24,7 @@ class Scatter_plot{
                 .attr("height",self.config.height)
         
         self.title = self.svg.append("text")
-                .attr("x",self.inner_width*0.5)
+                .attr("x",self.inner_width*0.35)
                 .attr("y",self.config.margin.top*0.5)
                 .attr("font-size",20)
                 .attr("font-weight","bold")

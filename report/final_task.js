@@ -1,7 +1,6 @@
 d3.csv("https://junya-takagi.github.io/infovis2021/report/plot_data.csv")
     .then(data=>{
         data.forEach(d=>{
-            console.log(d.prefecture)
             d.gdp = Number(d.gdp)
             d.aging_rate = Number(d.aging_rate)
         });
@@ -11,7 +10,7 @@ d3.csv("https://junya-takagi.github.io/infovis2021/report/plot_data.csv")
             height:480,
             margin:{top:60,right:20,bottom:50,left:80},
             label_space:10,
-            title:"GDP-aging",
+            title:"都道府県別GDPと高齢者割合の関係",
             xlabel:"GDP at current prices (1 trillion yen)",
             ylabel:"rate of aging (%)"
         };
