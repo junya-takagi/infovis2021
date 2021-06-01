@@ -65,7 +65,7 @@ class Scatter_plot{
             .append("circle")
             .attr("cx",d=>self.xscale(d.gdp))
             .attr("cy",d=>self.yscale(d.aging_rate))
-            .attr("r","10px")
+            .attr("r","5px")
             .attr("fill","black")
 
         self.svg.append("text")

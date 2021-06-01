@@ -7,8 +7,8 @@ d3.csv("https://junya-takagi.github.io/infovis2021/report/plot_data.csv")
         });
         var config = {
             parent:"#drawing_region",
-            width:500,
-            height:500,
+            width:640,
+            height:480,
             margin:{top:60,right:20,bottom:50,left:80},
             label_space:10,
             title:"Scatter plot",
