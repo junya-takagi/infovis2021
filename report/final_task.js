@@ -21,7 +21,7 @@ d3.csv("https://junya-takagi.github.io/infovis2021/report/plot_data.csv")
             .on("mouseover",(e,d)=>{
                 d3.select("#tooltip")
                     .style("opacity",1)
-                    .html(`<div class="tooltip-label">Position</div>(${d.gdp},${d.aging_rate})`);
+                    .html(`<div class="tooltip-label"></div>(${d.prefecture},${d.gdp},${d.aging_rate})`);
             })
             .on("mousemove",(e)=>{
                 const padding=10;
