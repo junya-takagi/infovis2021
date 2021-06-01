@@ -1,7 +1,7 @@
 d3.csv("https://junya-takagi.github.io/infovis2021/report/plot_data.csv")
     .then(data=>{
         data.forEach(d=>{
-            console.log(d.gdp)
+            console.log(d.prefecture)
             d.gdp = Number(d.gdp)
             d.aging_rate = Number(d.aging_rate)
         });
