@@ -48,10 +48,11 @@ class Scatter_plot{
     }
     update(){
         let self = this;
-        var ymin = d3.min(self.data,d=>d.y)
-        var xmin = d3.min(self.data,d=>d.x)
-        var ymax = d3.max(self.data,d=>d.y)
-        var xmax = d3.max(self.data,d=>d.x)
+        var ymin = d3.min(self.data,d=>d.aging_rate)
+        var xmin = d3.min(self.data,d=>d.gdp)
+        var ymax = d3.max(self.data,d=>d.aging_rate)
+        var xmax = d3.max(self.data,d=>d.gdp)
+        console.log(xmin,xmax)
         self.xscale.domain([xmin-self.config.label_space,xmax])
         self.yscale.domain([ymin-self.config.label_space,ymax])
         self.render()
@@ -62,8 +63,8 @@ class Scatter_plot{
             .data(self.data)
             .enter()
             .append("circle")
-            .attr("cx",d=>self.xscale(d.x))
-            .attr("cy",d=>self.yscale(d.y))
+            .attr("cx",d=>self.xscale(d.gdp))
+            .attr("cy",d=>self.yscale(d.aging_rate))
             .attr("r","10px")
             .attr("fill","black")
 

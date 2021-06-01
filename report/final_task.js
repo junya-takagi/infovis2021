@@ -1,8 +1,9 @@
 d3.csv("https://junya-takagi.github.io/infovis2021/report/plot_data.csv")
     .then(data=>{
         data.forEach(d=>{
-            d.x = Number(d.x)
-            d.y = Number(d.y)
+            console.log(d.gdp)
+            d.gdp = Number(d.gdp)
+            d.aging_rate = Number(d.aging_rate)
         });
         var config = {
             parent:"#drawing_region",
@@ -11,8 +12,8 @@ d3.csv("https://junya-takagi.github.io/infovis2021/report/plot_data.csv")
             margin:{top:60,right:20,bottom:50,left:80},
             label_space:10,
             title:"Scatter plot",
-            xlabel:"X label",
-            ylabel:"Y label"
+            xlabel:"GDP",
+            ylabel:"Aging_Rate"
         };
         const scatter_plot = new Scatter_plot(config,data)
         scatter_plot.update()
