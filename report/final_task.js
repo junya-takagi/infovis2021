@@ -11,9 +11,9 @@ d3.csv("https://junya-takagi.github.io/infovis2021/report/plot_data.csv")
             height:480,
             margin:{top:60,right:20,bottom:50,left:80},
             label_space:10,
-            title:"Scatter plot",
-            xlabel:"GDP",
-            ylabel:"Aging_Rate"
+            title:"都道府県別GDPと高齢者人口割合",
+            xlabel:"名目GDP (1兆円)",
+            ylabel:"高齢者の割合 (%)"
         };
         const scatter_plot = new Scatter_plot(config,data)
         scatter_plot.update()
