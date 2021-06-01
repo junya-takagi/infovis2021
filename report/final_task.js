@@ -11,9 +11,9 @@ d3.csv("https://junya-takagi.github.io/infovis2021/report/plot_data.csv")
             height:480,
             margin:{top:60,right:20,bottom:50,left:80},
             label_space:10,
-            title:"éƒ½é“åºœçœŒåˆ¥GDPã¨é«˜é½¢è€…äººå£å‰²åˆ",
-            xlabel:"åç›®GDP (1å…†å††)",
-            ylabel:"é«˜é½¢è€…ã®å‰²åˆ (%)"
+            title:"“s“¹•{Œ§•ÊGDP‚Æ‚—îÒlŒûŠ„‡",
+            xlabel:"–¼–ÚGDP (1’›‰~)",
+            ylabel:"‚—îÒ‚ÌŠ„‡ (%)"
         };
         const scatter_plot = new Scatter_plot(config,data)
         scatter_plot.update()
