@@ -52,9 +52,8 @@ class Scatter_plot{
         var xmin = d3.min(self.data,d=>d.gdp)
         var ymax = d3.max(self.data,d=>d.aging_rate)
         var xmax = d3.max(self.data,d=>d.gdp)
-        console.log(xmin,xmax)
-        self.xscale.domain([xmin-self.config.label_space,xmax])
-        self.yscale.domain([ymin-self.config.label_space,ymax])
+        self.xscale.domain([0,xmax])
+        self.yscale.domain([ymin-2,ymax])
         self.render()
     }
     render(){
@@ -65,11 +64,11 @@ class Scatter_plot{
             .append("circle")
             .attr("cx",d=>self.xscale(d.gdp))
             .attr("cy",d=>self.yscale(d.aging_rate))
-            .attr("r","5px")
+            .attr("r","7px")
             .attr("fill","black")
 
         self.svg.append("text")
-            .attr("x",self.inner_width*0.5+self.config.margin.left)
+            .attr("x",self.config.width*0.35)
             .attr("y",self.config.height-20)
             .text(self.config.xlabel)
 
