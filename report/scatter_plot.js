@@ -50,7 +50,7 @@ class Scatter_plot{
     update(){
         let self = this;
         self.cvalue = d=>d.area 
-        console.log(self.data)
+        console.log(self.data.region)
         var ymin = d3.min(self.data,d=>d.aging_rate)
         var xmin = d3.min(self.data,d=>d.gdp)
         var ymax = d3.max(self.data,d=>d.aging_rate)
