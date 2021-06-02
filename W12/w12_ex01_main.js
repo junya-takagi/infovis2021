@@ -1,4 +1,4 @@
-d3.csv("https://junya-takagi.github.io/infoVis2021/W12/iris.csv")
+d3.csv("https://junya-takagi.github.io/infovis2021/W12/iris.csv")
     .then( data => {
         data.forEach( d => {
             d.sepal_length = +d.sepal_length;

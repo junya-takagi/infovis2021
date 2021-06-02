@@ -1,4 +1,4 @@
-d3.csv("https://junya-takagi.github.io/InfoVis2021/W12/iris.csv")
+d3.csv("https://junya-takagi.github.io/infovis2021/W12/iris.csv")
     .then( data => {
 
         const color_scale = d3.scaleOrdinal( d3.schemeCategory10 );

@@ -9,7 +9,8 @@ class Scatter_plot{
             label_space:config.label_space,
             title:config.title,
             xlabel:config.xlabel,
-            ylabel:config.ylabel
+            ylabel:config.ylabel,
+            cscale:config.cscale
         };
         this.data = data;
         this.init();
@@ -48,6 +49,8 @@ class Scatter_plot{
     }
     update(){
         let self = this;
+        self.cvalue = d=>d.area 
+        console.log(self.data)
         var ymin = d3.min(self.data,d=>d.aging_rate)
         var xmin = d3.min(self.data,d=>d.gdp)
         var ymax = d3.max(self.data,d=>d.aging_rate)
@@ -65,7 +68,7 @@ class Scatter_plot{
             .attr("cx",d=>self.xscale(d.gdp))
             .attr("cy",d=>self.yscale(d.aging_rate))
             .attr("r","7px")
-            .attr("fill","black")
+            .attr("fill",d=>self.config.cscale(self.cvalue(d)))
 
         self.svg.append("text")
             .attr("x",self.config.width*0.35)
