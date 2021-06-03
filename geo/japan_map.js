@@ -11,7 +11,9 @@ function createMap(japan){
         .translate([width/2,height/2])
         .scale(scale)
     var geoPath = d3.geoPath().projection(projection);
-    
+    const color_scale = d3.scaleOrdinal(d3.schemeCategory10)
+    const areas = ["東北","関東","中部","近畿","中国","四国","九州"]
+    color_scale.domain(areas)
 
     japan_map.selectAll("path").data(japan.features)
         .enter()
@@ -20,5 +22,8 @@ function createMap(japan){
         .attr("id",d=>d.properties.name_local)
         .style("stroke","#ffffff")
         .style("stroke-width",0.1)
-        .style("fill","#5EAFC6");
+        .style("fill",function(d){
+            console.log(d.properties.region)
+        })
+        .style("fill",d=>color_scale(d.properties.region));
 }

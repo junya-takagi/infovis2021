@@ -40,17 +40,6 @@ function plot(){
             area:areas
         },input_data);
         bar_chart.update();
-
-        bar_chart2= new Bar_chart2({
-            parent:"#drawing_region3",
-            width:1600,
-            height:400,
-            margin:{top:40,right:20,bottom:40,left:80},
-            xlabel:"prefecture",
-            ylabel:"gdp",
-            cscale:color_scale,
-        },input_data);
-        bar_chart2.update();
         
         d3.select("#clear")
             .on("click",d=>{
@@ -60,6 +49,20 @@ function plot(){
             })
     }).catch(error=>{
         console.log(error)
+    })
+    d3.json("https://junya-takagi.github.io/infovis2021/report/geojapan.geojson")
+    .then(data=>{
+        map_data = data;
+        japan_map = new draw_map({
+            parent:"#japan_map",
+            width:600,
+            height:600,
+            margin:{top:10,right:10,bottom:10,left:10},
+            scale:1500,
+            cscale:color_scale,
+            area:areas
+        },map_data);
+        japan_map.update();
     })
 }
 
