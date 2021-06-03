@@ -17,9 +17,7 @@ function createMap(japan){
         .enter()
         .append("path")
         .attr("d",geoPath)
-        .attr("id",function(d){
-            console.log(d.properties.name_local)
-        })
+        .attr("id",d=>d.properties.name_local)
         .style("stroke","#ffffff")
         .style("stroke-width",0.1)
         .style("fill","#5EAFC6");
