@@ -1,4 +1,3 @@
-
 class Scatter_plot{
     constructor(config,data){
         this.config = {
@@ -32,47 +31,48 @@ class Scatter_plot{
                 .text(self.config.title)
         
         self.chart = self.svg.append("g")
+            .attr("id","scatter_plot")
             .attr("width",self.inner_width)
             .attr("height",self.inner_height)
             .attr("transform",`translate(${self.config.margin.left},${self.config.margin.top})`)
         
         self.xscale = d3.scaleLinear().range([0,self.inner_width])
-        self.xaxis = d3.axisBottom(self.xscale).ticks(8)
+        self.xaxis = d3.axisBottom(self.xscale).ticks(8).tickSize(5).tickPadding(5);
         self.xaxis_group = self.chart.append("g")
                 .attr("transform",`translate(0,${self.inner_height})`)
 
         self.yscale = d3.scaleLinear()
             .range([self.inner_height,0])
-        self.yaxis = d3.axisLeft(self.yscale).ticks(8)
+        self.yaxis = d3.axisLeft(self.yscale).ticks(8).tickSize(5).tickPadding(5);
         self.yaxis_group = self.chart.append("g")
             .attr("transform",`translate(0,0)`)
-    }
-    update(){
-        let self = this;
-        self.cvalue = d=>d.area 
-        console.log(self.data.region)
+        
+        self.cvalue = d=>d.area
         var ymin = d3.min(self.data,d=>d.aging_rate)
         var xmin = d3.min(self.data,d=>d.gdp)
         var ymax = d3.max(self.data,d=>d.aging_rate)
         var xmax = d3.max(self.data,d=>d.gdp)
         self.xscale.domain([0,xmax])
         self.yscale.domain([ymin-2,ymax])
+    }
+    update(){
+        let self = this;
         self.render()
     }
     render(){
         let self = this;
-        self.chart.selectAll("circle")
+        let circles = self.chart.selectAll("circle")
             .data(self.data)
-            .enter()
-            .append("circle")
+            .join("circle")
+        circles
             .attr("cx",d=>self.xscale(d.gdp))
             .attr("cy",d=>self.yscale(d.aging_rate))
             .attr("r","7px")
             .attr("fill",d=>self.config.cscale(self.cvalue(d)))
 
-        self.svg.append("text")
-            .attr("x",self.config.width*0.35)
-            .attr("y",self.config.height-20)
+        d3.select("#scatter_plot").append("text")
+            .attr("x",self.inner_width*0.2)
+            .attr("y",self.inner_height+self.config.margin.bottom)
             .text(self.config.xlabel)
 
         self.svg.append("text")
@@ -84,5 +84,22 @@ class Scatter_plot{
 
         self.xaxis_group.call(self.xaxis)
         self.yaxis_group.call(self.yaxis)
+
+        d3.selectAll("circle")
+            .on("mouseover",(e,d)=>{
+                d3.select("#tooltip")
+                    .style("opacity",1)
+                    .html(`<div class="tooltip-label"></div>(${d.prefecture},${d.gdp},${d.aging_rate})`);
+            })
+            .on("mousemove",(e)=>{
+                const padding=10;
+                d3.select("#tooltip")
+                    .style("left",(e.pageX+padding)+"px")
+                    .style("top",(e.pageY+padding)+"px")
+            })
+            .on("mouseout",()=>{
+                d3.select("#tooltip")
+                    .style("opacity",0)
+            })
     }
 }

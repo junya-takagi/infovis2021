@@ -1,42 +1,86 @@
-d3.csv("https://junya-takagi.github.io/infovis2021/report/plot_data.csv")
+let input_data;
+let scatter_plot;
+let bar_chart;
+let filter = [];
+
+function plot(){
+    d3.csv("https://junya-takagi.github.io/infovis2021/report/plot_data.csv")
     .then(data=>{
-        data.forEach(d=>{
+        input_data = data;
+        input_data.forEach(d=>{
             d.gdp = Number(d.gdp)
             d.aging_rate = Number(d.aging_rate)
             d.region = Number(d.region)
         });
         const color_scale = d3.scaleOrdinal(d3.schemeCategory10)
-        color_scale.domain(["東北","関東","中部","近畿","中国","四国","九州"])
-        var config = {
-            parent:"#drawing_region",
-            width:640,
-            height:480,
+        const areas = ["東北","関東","中部","近畿","中国","四国","九州"]
+        color_scale.domain(areas)
+        
+        scatter_plot = new Scatter_plot({
+            parent:"#drawing_region1",
+            width:560,
+            height:400,
             margin:{top:60,right:20,bottom:50,left:80},
             label_space:10,
             title:"都道府県別GDPと高齢者割合の関係",
             xlabel:"GDP at current prices (1 trillion yen)",
             ylabel:"rate of aging (%)",
             cscale:color_scale
-        };
-        const scatter_plot = new Scatter_plot(config,data)
+        },input_data);
         scatter_plot.update()
-        d3.selectAll("circle")
-            .on("mouseover",(e,d)=>{
-                d3.select("#tooltip")
-                    .style("opacity",1)
-                    .html(`<div class="tooltip-label"></div>(${d.prefecture},${d.gdp},${d.aging_rate})`);
-            })
-            .on("mousemove",(e)=>{
-                const padding=10;
-                d3.select("#tooltip")
-                    .style("left",(e.pageX+padding)+"px")
-                    .style("top",(e.pageY+padding)+"px")
-            })
-            .on("mouseout",()=>{
-                d3.select("#tooltip")
-                    .style("opacity",0)
-            })
+
+        bar_chart = new Bar_chart({
+            parent:"#drawing_region2",
+            width:400,
+            height:400,
+            margin:{top:60,right:20,bottom:50,left:80},
+            xlabel:"area",
+            ylabel:"total gdp",
+            cscale:color_scale,
+            area:areas
+        },input_data);
+        bar_chart.update();
+
+        bar_chart2= new Bar_chart2({
+            parent:"#drawing_region3",
+            width:1600,
+            height:400,
+            margin:{top:40,right:20,bottom:40,left:80},
+            xlabel:"prefecture",
+            ylabel:"gdp",
+            cscale:color_scale,
+        },input_data);
+        bar_chart2.update();
         
+        d3.select("#clear")
+            .on("click",d=>{
+                filter = ["空"]
+                Filter();
+                scatter_plot.update()
+            })
     }).catch(error=>{
         console.log(error)
     })
+}
+
+function Filter() {
+    if ( filter.length == 0 ) {
+        scatter_plot.data = input_data;
+    }
+    else {
+        scatter_plot.data = input_data.filter( d => filter.includes(d.area) );
+    }
+    scatter_plot.update();
+}
+
+plot()
+
+d3.select("#all")
+.on("click",d=>{
+    filter = []
+    delete scatter_plot;
+    delete bar_chart;
+    d3.selectAll("g").remove()
+    plot()
+})
+
