@@ -74,7 +74,7 @@ class Bar_chart{
             .attr("width",self.xscale.bandwidth())
             .attr("height",d=>self.inner_height-self.yscale(self.yvalue(d)))
             .attr("fill",d=>self.config.cscale(self.cvalue(d)))
-            .on("click",function(ev,d){
+            /*.on("click",function(ev,d){
                 const is_active = filter.includes(d[0]);
                 if(is_active){
                     filter = filter.filter(f=>f!==d[0]);
@@ -84,7 +84,7 @@ class Bar_chart{
                 }
                 Filter();
                 d3.select(this).classed("active",!is_active);
-            });
+            });*/
         d3.select("#bar_chart").append("text")
             .attr("x",self.inner_width*0.4)
             .attr("y",self.inner_height+self.config.margin.bottom)

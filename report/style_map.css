@@ -1,7 +1,7 @@
 body {
     font-family: system-ui;
 }
-#tooltip {
+#tooltip_map{
     position: absolute;
     opacity: 0;
     background: #fff;
@@ -10,11 +10,12 @@ body {
     font-weight: 600;
     padding: 2px 8px;
 }
-.tooltip-label {
+.tooltip-label_map{
     font-weight: 500;
     font-size: 11px;
     color: #888;
 }
-circle:hover{
-    fill:gold;
+.map:hover{
+    fill:black;
+    stroke:yellow;
 }

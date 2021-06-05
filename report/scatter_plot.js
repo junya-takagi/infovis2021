@@ -54,6 +54,7 @@ class Scatter_plot{
         var xmax = d3.max(self.data,d=>d.gdp)
         self.xscale.domain([0,xmax])
         self.yscale.domain([ymin-2,ymax])
+        self.label_space = 30
     }
     update(){
         let self = this;
@@ -68,11 +69,12 @@ class Scatter_plot{
             .attr("cx",d=>self.xscale(d.gdp))
             .attr("cy",d=>self.yscale(d.aging_rate))
             .attr("r","7px")
+            .attr("id",d=>d.prefecture)
             .attr("fill",d=>self.config.cscale(self.cvalue(d)))
-
+            .style("opacity",0.9)
         d3.select("#scatter_plot").append("text")
-            .attr("x",self.inner_width*0.2)
-            .attr("y",self.inner_height+self.config.margin.bottom)
+            .attr("x",self.inner_width*0.35)
+            .attr("y",self.inner_height+self.config.margin.bottom+self.label_space)
             .text(self.config.xlabel)
 
         self.svg.append("text")
@@ -89,7 +91,7 @@ class Scatter_plot{
             .on("mouseover",(e,d)=>{
                 d3.select("#tooltip")
                     .style("opacity",1)
-                    .html(`<div class="tooltip-label"></div>(${d.prefecture},${d.gdp},${d.aging_rate})`);
+                    .html(`<div class="tooltip-label"></div>(${d.prefecture},${d.gdp+"兆円"},${d.aging_rate+"%"})`);
             })
             .on("mousemove",(e)=>{
                 const padding=10;
@@ -101,5 +103,14 @@ class Scatter_plot{
                 d3.select("#tooltip")
                     .style("opacity",0)
             })
+    }
+    show(id){
+        var obj = d3.select("#scatter_plot").select(id)
+        obj.transition().duration(1000).attr("r","20px");
+    }
+    close(id){
+        let self = this
+        var  obj = d3.select("#scatter_plot").select(id)
+        obj.transition().duration(1000).attr("r","7px")
     }
 }
