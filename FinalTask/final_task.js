@@ -7,7 +7,7 @@ let filter = [];
 let prefecture;
 
 function plot(){
-    d3.csv("https://junya-takagi.github.io/infovis2021/report/plot_data.csv")
+    d3.csv("https://junya-takagi.github.io/infovis2021/FinalTask/plot_data.csv")
     .then(data=>{
         input_data = data;
         input_data.forEach(d=>{
@@ -38,7 +38,7 @@ function plot(){
 }
 
 function draw(){
-    d3.json("https://junya-takagi.github.io/infovis2021/report/geojapan.geojson")
+    d3.json("https://junya-takagi.github.io/infovis2021/FinalTask/geojapan.geojson")
     .then(data=>{
         map_data = data;
         const color_scale = d3.scaleOrdinal(d3.schemeCategory10)
