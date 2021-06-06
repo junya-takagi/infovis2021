@@ -54,7 +54,7 @@ function draw(){
             area:areas
         },map_data);
         japan_map.update();
-    }).cathc(error=>{
+    }).catch(error=>{
         console.log(error)
     })
 }
