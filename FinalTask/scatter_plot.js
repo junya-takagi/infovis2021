@@ -71,7 +71,7 @@ class Scatter_plot{
             .attr("r","7px")
             .attr("id",d=>d.prefecture)
             .attr("fill",d=>self.config.cscale(self.cvalue(d)))
-            .style("opacity",0.9)
+            .style("opacity",0.75)
         d3.select("#scatter_plot").append("text")
             .attr("x",self.inner_width*0.35)
             .attr("y",self.inner_height+self.config.margin.bottom+self.label_space)

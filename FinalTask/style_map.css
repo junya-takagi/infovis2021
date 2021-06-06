@@ -15,7 +15,3 @@ body {
     font-size: 11px;
     color: #888;
 }
-.map:hover{
-    fill:black;
-    stroke:yellow;
-}

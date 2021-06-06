@@ -21,8 +21,8 @@ function plot(){
         
         scatter_plot = new Scatter_plot({
             parent:"#scatter_plot",
-            width:600,
-            height:480,
+            width:800,
+            height:600,
             margin:{top:35,right:10,bottom:50,left:70},
             label_space:10,
             title:"都道府県別GDPと高齢者割合の関係",
@@ -54,6 +54,8 @@ function draw(){
             area:areas
         },map_data);
         japan_map.update();
+    }).cathc(error=>{
+        console.log(error)
     })
 }
 
